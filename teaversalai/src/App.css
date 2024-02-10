@@ -1,9 +1,9 @@
 .App {
   text-align: center;
-}
 
+}
 .App-header {
-  background-color: #282c34;
+  background-color: transparent;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,4 +11,26 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.logo_img{
+  width: 30px;
+  display: inline-block;
+  margin-bottom: 1%;
+}
+.hotel_logo_img{
+  width: 70%;
+  display: inline-block;
+  margin-bottom: 1%;
+}
+.title{
+  display: inline-block;
+}
+
+.topLine{
+  display: flex;
+}
+
+.topLineText{
+  align-items: center;
 }
