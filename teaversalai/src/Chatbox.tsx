@@ -11,6 +11,11 @@ class Chatbox extends React.Component<any,any> {
   introNav = () => {
       this.props.navigate("/")
   }
+
+  localNav = () => {
+    window.location.reload(); // Reload the page
+    window.scrollTo(0, 0); 
+  }
   render() {
     return (
       <div className="App">
@@ -25,6 +30,15 @@ class Chatbox extends React.Component<any,any> {
         <button className="btn btn-primary">Distance</button>
 
         <input type="text" placeholder="Message Traversal AI ... " />
+
+        <footer>
+            <div className="footer-text">
+                Empower Your Journey @
+            </div>
+            <div className="footer-find-me">
+                <a onClick={this.localNav}>Hotel Recommender</a>
+            </div>
+        </footer>
       </div>
     );
   }

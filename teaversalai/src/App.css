@@ -14,7 +14,7 @@
 }
 
 .logo_img{
-  width: 30px;
+  width: 40px;
   display: inline-block;
   margin-bottom: 1%;
 }
@@ -37,4 +37,90 @@
 
 .topLineText{
   align-items: center;
+}
+
+.topText{
+  font-size: 50px;
+}
+
+.recommenderName {
+  background-image: linear-gradient(87deg, #9239ea 1.21%, #e195c9 42.19%);
+  color: white; 
+  font-weight: bold;
+  padding: 0 5px;
+  display: inline;
+  background-clip: text; /* Clip the background to the text */
+  -webkit-background-clip: text; /* For Safari */
+  -webkit-text-fill-color: transparent; /* Hide the actual text color */
+}
+
+.midLine{
+  display: flex;
+  color: rgb(182 182 182);
+  justify-content: space-evenly;
+  margin-top: 5%;
+  font-weight: 700;
+  line-height: 1.75rem;
+  margin-bottom: 10%;
+}
+
+.btnStyle {
+  --angle: 309deg;
+  --border-color: conic-gradient(from var(--angle) at 50.33% 50.33%, rgba(255, 183, 188, 0.30) 0deg, rgba(97, 0, 255, 0.30) 125.62500357627869deg, rgba(255, 125, 219, 0.28) 258.75deg, rgba(255, 195, 182, 0.30) 360deg);
+  --bg-color: linear-gradient(#353845, #353845);
+  background: padding-box var(--bg-color), border-box var(--border-color);
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-color: #0000;
+  border-width: 4px;
+  border-radius: 1.5rem;
+  width: auto;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .footer-text {
+  font-size: 20px;
+  display: inline-block;
+}
+
+footer .footer-find-me {
+  font-size: 20px;
+  color: white;
+  margin-left: 10px;
+  display: inline-block;
+  border: 1px dashed white;
+  transition: border-color 0.3s ease;
+}
+
+footer .footer-find-me a {
+  color: white;
+  text-decoration: none;
+}
+
+footer .footer-find-me a:hover {
+  text-decoration:none;
+  border-color: rgb(255, 255, 255);
+  background-color: #88a5df;
 }
