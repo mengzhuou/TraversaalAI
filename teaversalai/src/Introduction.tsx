@@ -33,7 +33,7 @@ class Introduction extends React.Component<any,any>{
                 </div>
             </div>
             <div className='row'>
-                <button className="btn btn-primary">Distance</button>
+                <button className="btn btn-primary" onClick={this.chatBoxNav}>LET'S START</button>
             </div>
             </div>
         </div>
