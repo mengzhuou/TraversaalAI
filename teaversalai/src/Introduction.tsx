@@ -13,6 +13,11 @@ class Introduction extends React.Component<any,any>{
     chatBoxNav = () => {
         this.props.navigate("/Chatbox")
     }
+
+    localNav = () => {
+        window.location.reload(); // Reload the page
+        window.scrollTo(0, 0); 
+    }
     render() {
         return (
         <div className="App">
@@ -37,6 +42,14 @@ class Introduction extends React.Component<any,any>{
                 </div>
                 <button className="btnStyle" onClick={this.chatBoxNav}>LET'S START</button>
             </div>
+            <footer>
+                <div className="footer-text">
+                    Empower Your Journey @
+                </div>
+                <div className="footer-find-me">
+                    <a onClick={this.localNav}>Hotel Recommender</a>
+                </div>
+            </footer>
         </div>
         );
     }
