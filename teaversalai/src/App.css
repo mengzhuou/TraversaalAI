@@ -29,6 +29,10 @@
 
 .topLine{
   display: flex;
+  color: rgb(182 182 182);
+  justify-content: space-evenly;
+  margin-top: 15%;
+  margin-bottom: 10%;
 }
 
 .topLineText{

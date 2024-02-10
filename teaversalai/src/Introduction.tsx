@@ -22,8 +22,10 @@ class Introduction extends React.Component<any,any>{
             <div className='row'>
                 <div className='col'>
                 <div className='topLine'>
-                    <div className='topLineText'>Personalized | </div>
-                    <div className='topLineText'>24/7 | </div>
+                    <div className='topLineText'>Personalized</div>
+                    <div className='topLineText'> | </div>
+                    <div className='topLineText'>24/7</div>
+                    <div className='topLineText'> | </div>
                     <div className='topLineText'>Self-paced</div>
                 </div>
                 <p>Customize Best Hotel For You</p>
