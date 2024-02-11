@@ -1,5 +1,6 @@
 from qdrant_client import models, QdrantClient
 from sentence_transformers import SentenceTransformer
+from tai import get_response
 
 
 def init_qdrant():
@@ -17,11 +18,25 @@ def get_context(user_query, k = 5, encoder=SentenceTransformer("all-MiniLM-L6-v2
         collection_name="hotels",
         query_vector=encoder.encode(user_query).tolist(),
         limit=k,
+        # query_filter=models.Filter(
+        # must=[
+        #         models.FieldCondition(
+        #             key="locality",
+        #             match=models.MatchValue(
+        #                 value=city,
+        #             ),
+        #         )
+        #     ]
+        # )
     )
+
+    response = get_response(f"More information about: {user_query}")
 
     answers = []
     for h in hits:
-        answers.append(h)
-    return answers
+        # print(h.payload)
+        if h.score > 0.5:
+            answers.append(str(h.payload))
+    return answers, response
 
 
