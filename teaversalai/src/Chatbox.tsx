@@ -7,12 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon you need
 import axios from 'axios';
 
-class Chatbox extends React.Component<any,any> {
-  constructor(props:any){
+class Chatbox extends React.Component<any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
-      prompt:"",
-      response:"",
+      prompt: "",
+      response: "",
     }
   }
 
@@ -32,7 +32,7 @@ class Chatbox extends React.Component<any,any> {
   handleAISubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/generate', { prompt: this.state.prompt });
+      const res = await axios.post('http://localhost:5001/generate', { prompt: this.state.prompt });
       const response = res.data.response;
       window.alert(res.data.response);
       this.setState({ response: res.data.response });
@@ -78,12 +78,12 @@ class Chatbox extends React.Component<any,any> {
         </div>
 
         <footer>
-            <div className="footer-text">
-                Empower Your Journey @
-            </div>
-            <div className="footer-find-me">
-                <a onClick={this.localNav}>Hotel Recommender</a>
-            </div>
+          <div className="footer-text">
+            Empower Your Journey @
+          </div>
+          <div className="footer-find-me">
+            <a onClick={this.localNav}>Hotel Recommender</a>
+          </div>
         </footer>
       </div>
     );
