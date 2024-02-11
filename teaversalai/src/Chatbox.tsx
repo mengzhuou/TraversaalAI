@@ -14,6 +14,11 @@ class Chatbox extends React.Component<any,any> {
   localNav = () => {
     this.props.navigate("/")
   }
+
+  handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log("Form submitted!");
+  }
   render() {
     return (
       <div className="App">
@@ -36,7 +41,9 @@ class Chatbox extends React.Component<any,any> {
           </div>
           <div className="inputSection">
             <input className="inputBar" type="text" placeholder="Message Traversal AI ... " />
-            <FontAwesomeIcon icon="fas fa-paper-plane" />
+            <button type="submit" className="submitBtn"> 
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
           </div>
         </div>
 
