@@ -36,8 +36,6 @@ class Chatbox extends React.Component<any,any> {
     }
   };
 
-
-
   render() {
     const { prompt, response, isResponse } = this.state;
     return (
