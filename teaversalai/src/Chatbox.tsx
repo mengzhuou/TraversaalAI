@@ -35,6 +35,36 @@ class Chatbox extends React.Component<any,any> {
       console.error('Error:', error);
     }
   };
+  handlePriceSubmit = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/generate', { prompt: "Give me nice breakfast hotels in San francisco with fair prices." });
+      const response = res.data.response;
+      this.setState({ response: response, isResponse: true });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  handleDistanceSubmit = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/generate', { prompt: "Give me nice breakfast hotels in Georgia with nearest distance in 10 miles." });
+      const response = res.data.response;
+      this.setState({ response: response, isResponse: true });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  handleFeedbackSubmit = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/generate', { prompt: "Give me nice breakfast hotels in Georgia with good review." });
+      const response = res.data.response;
+      this.setState({ response: response, isResponse: true });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   render() {
     const { prompt, response, isResponse } = this.state;
@@ -42,7 +72,7 @@ class Chatbox extends React.Component<any,any> {
     if (isResponse) {
       formattedResponse = response.split(/\d\./).filter(Boolean).map((item: any, index: any) => (
         <div key={index}>
-          <p>{index + 1}. {item.trim()}</p>
+          <p>{"->"}{item.trim()}</p>
           <br />
         </div>
       ));
@@ -52,20 +82,7 @@ class Chatbox extends React.Component<any,any> {
         <div className='container'>
           <h1 className="title">Hotel Recommender</h1>
           <img className="logo_img" src={logo} alt="Logo" />
-
-          
-          {/* <div className='filterLine'>
-            <div className='filterCol'>
-              <button className="btnChatboxStyle">Price</button>
-            </div>
-            <div className='filterCol'>
-              <button className="btnChatboxStyle">Feedback</button>
-            </div>
-            <div className='filterCol'>
-              <button className="btnChatboxStyle">Distance</button>
-            </div>
-          </div> */}
-
+          <br />
           {isResponse ? (
             <div className="responseContainer">
               <p>{formattedResponse}</p>
@@ -75,6 +92,18 @@ class Chatbox extends React.Component<any,any> {
               How can I help you determine the best hotel option in your area?
             </p>
           )}
+
+          <div className='filterLine'>
+            <div className='filterCol'>
+              <button className="btnChatboxStyle" onClick={this.handlePriceSubmit}>Price</button>
+            </div>
+            <div className='filterCol'>
+              <button className="btnChatboxStyle" onClick={this.handleFeedbackSubmit}>Feedback</button>
+            </div>
+            <div className='filterCol'>
+              <button className="btnChatboxStyle" onClick={this.handleDistanceSubmit}>Distance</button>
+            </div>
+          </div>
           
           <div className="inputSection">
             <input
@@ -84,7 +113,7 @@ class Chatbox extends React.Component<any,any> {
               value={prompt}
               onChange={this.handleInputChange}
             />
-            <button type="submit" className="submitBtn" onClick={this.handleAISubmit}>
+            <button type="submit" className="submitBtn" onClick={this.handleAISubmit} disabled={!prompt}>
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </div>
