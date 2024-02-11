@@ -9,6 +9,10 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Import the 
 class Chatbox extends React.Component<any,any> {
   constructor(props:any){
     super(props);
+    this.state = {
+      prompt:"",
+      response:"",
+    }
   }
 
   localNav = () => {
@@ -19,7 +23,9 @@ class Chatbox extends React.Component<any,any> {
     event.preventDefault();
     console.log("Form submitted!");
   }
+
   render() {
+    const { prompt, response } = this.state;
     return (
       <div className="App">
         <div className='container'>
