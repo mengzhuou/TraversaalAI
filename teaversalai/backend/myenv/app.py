@@ -19,6 +19,7 @@ google.generativeai.configure(api_key=API_KEY)
 @app.route('/generate', methods=['POST'])
 def generate_content():
     prompt = request.json.get('prompt')
+    
 
     model = google.generativeai.GenerativeModel('gemini-pro')
     response = model.generate_content(prompt)

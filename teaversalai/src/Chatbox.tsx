@@ -38,6 +38,15 @@ class Chatbox extends React.Component<any,any> {
 
   render() {
     const { prompt, response, isResponse } = this.state;
+    let formattedResponse;
+    if (isResponse) {
+      formattedResponse = response.split(/\d\./).filter(Boolean).map((item: any, index: any) => (
+        <div key={index}>
+          <p>{index + 1}. {item.trim()}</p>
+          <br />
+        </div>
+      ));
+    }
     return (
       <div className="App">
         <div className='container'>
@@ -59,7 +68,7 @@ class Chatbox extends React.Component<any,any> {
 
           {isResponse ? (
             <div className="responseContainer">
-              <p>{response}</p>
+              <p>{formattedResponse}</p>
             </div>
           ) : (
             <p className='midLineChatbox'>
