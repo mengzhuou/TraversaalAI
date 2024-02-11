@@ -13,6 +13,7 @@ class Chatbox extends React.Component<any, any> {
     this.state = {
       prompt: "",
       response: "",
+      isResponse: false,
     }
   }
 
@@ -24,34 +25,29 @@ class Chatbox extends React.Component<any, any> {
     this.setState({ prompt: event.target.value });
   };
 
-  handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log("Form submitted!");
-  }
-
   handleAISubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     try {
       const res = await axios.post('http://localhost:5001/generate', { prompt: this.state.prompt });
       const response = res.data.response;
-      window.alert(res.data.response);
-      this.setState({ response: res.data.response });
+      this.setState({ response: response, isResponse: true });
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
+
+
   render() {
-    const { prompt, response } = this.state;
+    const { prompt, response, isResponse } = this.state;
     return (
       <div className="App">
         <div className='container'>
           <h1 className="title">Hotel Recommender</h1>
           <img className="logo_img" src={logo} alt="Logo" />
-          <p className='midLineChatbox'>
-            How can I help you determine the best hotel option in your area?
-          </p>
-          <div className='filterLine'>
+
+          
+          {/* <div className='filterLine'>
             <div className='filterCol'>
               <button className="btnChatboxStyle">Price</button>
             </div>
@@ -61,7 +57,18 @@ class Chatbox extends React.Component<any, any> {
             <div className='filterCol'>
               <button className="btnChatboxStyle">Distance</button>
             </div>
-          </div>
+          </div> */}
+
+          {isResponse ? (
+            <div className="responseContainer">
+              <p>{response}</p>
+            </div>
+          ) : (
+            <p className='midLineChatbox'>
+              How can I help you determine the best hotel option in your area?
+            </p>
+          )}
+          
           <div className="inputSection">
             <input
               className="inputBar"
@@ -74,7 +81,7 @@ class Chatbox extends React.Component<any, any> {
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </div>
-          {response && <p>{response}</p>}
+          
         </div>
 
         <footer>
