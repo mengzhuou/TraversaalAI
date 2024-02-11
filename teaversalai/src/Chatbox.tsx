@@ -5,6 +5,7 @@ import logo from './logo-removebg-preview.png';
 import { withFuncProps } from "./withFuncProps";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon you need
+import axios from 'axios';
 
 class Chatbox extends React.Component<any,any> {
   constructor(props:any){
@@ -19,10 +20,26 @@ class Chatbox extends React.Component<any,any> {
     this.props.navigate("/")
   }
 
+  handleInputChange = (event: { target: { value: any; }; }) => {
+    this.setState({ prompt: event.target.value });
+  };
+
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log("Form submitted!");
   }
+
+  handleAISubmit = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:5000/generate', { prompt: this.state.prompt });
+      const response = res.data.response;
+      window.alert(res.data.response);
+      this.setState({ response: res.data.response });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   render() {
     const { prompt, response } = this.state;
@@ -46,11 +63,18 @@ class Chatbox extends React.Component<any,any> {
             </div>
           </div>
           <div className="inputSection">
-            <input className="inputBar" type="text" placeholder="Message Traversal AI ... " />
-            <button type="submit" className="submitBtn"> 
+            <input
+              className="inputBar"
+              type="text"
+              placeholder="Message Traversal AI ..."
+              value={prompt}
+              onChange={this.handleInputChange}
+            />
+            <button type="submit" className="submitBtn" onClick={this.handleAISubmit}>
               <FontAwesomeIcon icon={faPaperPlane} />
             </button>
           </div>
+          {response && <p>{response}</p>}
         </div>
 
         <footer>
