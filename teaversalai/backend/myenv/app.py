@@ -12,8 +12,7 @@ def add_cors_headers(response):
     response.headers['Access-Control-Allow-Credentials'] = 'true'
     return response
 
-with open("C:\\Users\\xiche\\OneDrive\\Desktop\\projects\\TraversaalAI\\teaversalai\\public\\secret_key.txt", "r") as file:
-    API_KEY = file.read().strip()
+API_KEY = "AIzaSyB1-vbgeplUQy0AhaZKlDj2LTlFs5aBXuc"
 
 google.generativeai.configure(api_key=API_KEY)
 
