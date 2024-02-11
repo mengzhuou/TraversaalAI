@@ -1,35 +1,44 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from './logo-removebg-preview.png';
 import { withFuncProps } from "./withFuncProps";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon you need
 
 class Chatbox extends React.Component<any,any> {
   constructor(props:any){
     super(props);
   }
 
-  introNav = () => {
-      this.props.navigate("/")
-  }
-
   localNav = () => {
-    window.location.reload(); // Reload the page
-    window.scrollTo(0, 0); 
+    this.props.navigate("/")
   }
   render() {
     return (
       <div className="App">
-        <div className='row'>
-            <button className="btn btn-primary" onClick={this.introNav}>Main Page</button>
+        <div className='container'>
+          <h1 className="title">Hotel Recommender</h1>
+          <img className="logo_img" src={logo} alt="Logo" />
+          <p className='midLineChatbox'>
+            How can I help you determine the best hotel option in your area?
+          </p>
+          <div className='filterLine'>
+            <div className='filterCol'>
+              <button className="btnChatboxStyle">Price</button>
+            </div>
+            <div className='filterCol'>
+              <button className="btnChatboxStyle">Feedback</button>
+            </div>
+            <div className='filterCol'>
+              <button className="btnChatboxStyle">Distance</button>
+            </div>
+          </div>
+          <div className="inputSection">
+            <input className="inputBar" type="text" placeholder="Message Traversal AI ... " />
+            <FontAwesomeIcon icon="fas fa-paper-plane" />
+          </div>
         </div>
-        <p>
-          How can I help you determine the best hotel option in your area?
-        </p>
-        <button className="btn btn-primary">Price</button>
-        <button className="btn btn-primary">Feedback</button>
-        <button className="btn btn-primary">Distance</button>
-
-        <input type="text" placeholder="Message Traversal AI ... " />
 
         <footer>
             <div className="footer-text">
