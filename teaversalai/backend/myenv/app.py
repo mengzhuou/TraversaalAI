@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import google.generativeai
 import os
+from search import get_context
 
 app = Flask(__name__)
 
@@ -19,9 +20,15 @@ google.generativeai.configure(api_key=API_KEY)
 @app.route('/generate', methods=['POST'])
 def generate_content():
     prompt = request.json.get('prompt')
+    answers = get_context(prompt)
+    context = "\n".join(answers)
+
+    prompt_template = f"Answer this user query: {prompt} using the following context \
+                        which contains hotels with location, rating, price, reviews and descriptions: \n \
+                        {context}"
 
     model = google.generativeai.GenerativeModel('gemini-pro')
-    response = model.generate_content(prompt)
+    response = model.generate_content(prompt_template)
 
     return jsonify({"response": response.text})
 
