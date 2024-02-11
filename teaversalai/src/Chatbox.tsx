@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo-removebg-preview.png';
 import { withFuncProps } from "./withFuncProps";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon you need
+import { faPaperPlane, faSpinner } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon you need
 import axios from 'axios';
 
 class Chatbox extends React.Component<any,any> {
@@ -14,6 +14,7 @@ class Chatbox extends React.Component<any,any> {
       prompt: "",
       response: "",
       isResponse: false,
+      isLoading: false,
     }
   }
 
@@ -27,47 +28,59 @@ class Chatbox extends React.Component<any,any> {
 
   handleAISubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
+    this.setState({ isLoading: true }); 
     try {
       const res = await axios.post('http://localhost:5000/generate', { prompt: this.state.prompt });
       const response = res.data.response;
-      this.setState({ response: response, isResponse: true });
+      this.setState({ response: response, isResponse: true, isLoading: false });
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      this.setState({ isLoading: false }); // Ensure isLoading is set to false after handling the API call
     }
   };
   handlePriceSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
+    this.setState({ isLoading: true }); 
     try {
       const res = await axios.post('http://localhost:5000/generate', { prompt: "Give me nice breakfast hotels in San francisco with fair prices." });
       const response = res.data.response;
-      this.setState({ response: response, isResponse: true });
+      this.setState({ response: response, isResponse: true, isLoading: false });
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      this.setState({ isLoading: false }); // Ensure isLoading is set to false after handling the API call
     }
   };
   handleDistanceSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
+    this.setState({ isLoading: true }); 
     try {
       const res = await axios.post('http://localhost:5000/generate', { prompt: "Give me nice breakfast hotels in Georgia with nearest distance in 10 miles." });
       const response = res.data.response;
-      this.setState({ response: response, isResponse: true });
+      this.setState({ response: response, isResponse: true, isLoading: false });
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      this.setState({ isLoading: false }); // Ensure isLoading is set to false after handling the API call
     }
   };
   handleFeedbackSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
+    this.setState({ isLoading: true }); 
     try {
       const res = await axios.post('http://localhost:5000/generate', { prompt: "Give me nice breakfast hotels in Georgia with good review." });
       const response = res.data.response;
       this.setState({ response: response, isResponse: true });
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      this.setState({ isLoading: false }); // Ensure isLoading is set to false after handling the API call
     }
   };
 
   render() {
-    const { prompt, response, isResponse } = this.state;
+    const { prompt, response, isResponse, isLoading } = this.state;
     let formattedResponse;
     if (isResponse) {
       formattedResponse = response.split(/\d\./).filter(Boolean).map((item: any, index: any) => (
@@ -77,20 +90,27 @@ class Chatbox extends React.Component<any,any> {
         </div>
       ));
     }
+    console.log("isLoading", isLoading)
     return (
       <div className="App">
         <div className='container'>
           <h1 className="title">Hotel Recommender</h1>
           <img className="logo_img" src={logo} alt="Logo" />
           <br />
-          {isResponse ? (
-            <div className="responseContainer">
-              <p>{formattedResponse}</p>
+          {isLoading ? (
+            <div className="loadingIcon">
+              <FontAwesomeIcon icon={faSpinner} spin />
             </div>
           ) : (
-            <p className='midLineChatbox'>
-              How can I help you determine the best hotel option in your area?
-            </p>
+            isResponse ? (
+              <div className="responseContainer">
+                <p>{formattedResponse}</p>
+              </div>
+            ) : (
+              <p className='midLineChatbox'>
+                How can I help you determine the best hotel option in your area?
+              </p>
+            )
           )}
 
           <div className='filterLine'>
@@ -115,6 +135,7 @@ class Chatbox extends React.Component<any,any> {
             />
             <button type="submit" className="submitBtn" onClick={this.handleAISubmit} disabled={!prompt}>
               <FontAwesomeIcon icon={faPaperPlane} />
+              
             </button>
           </div>
           

@@ -220,4 +220,15 @@ footer .footer-find-me a:hover {
 .inputSection{
   padding-bottom: 50px;
 }
-
+.loadingIcon{
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  border-color: #0000;
+  border-width: 10px;
+  border-radius: 1.5rem;
+  background: transparent;
+  border: none;
+}
