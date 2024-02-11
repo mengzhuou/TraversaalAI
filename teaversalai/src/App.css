@@ -23,8 +23,21 @@
   display: inline-block;
   margin-bottom: 1%;
 }
+
 .title{
   display: inline-block;
+  margin-top: 1%;
+}
+
+.filterLine{
+  display: inline-block;
+  margin-top: 10%;
+}
+
+.filterCol{
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .topLine{
@@ -64,6 +77,15 @@
   margin-bottom: 10%;
 }
 
+.midLineChatbox{
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 25px;
+  margin-top: 10%;
+  line-height: 1.75rem;
+  margin-bottom: 8%;
+}
+
 .btnStyle {
   --angle: 309deg;
   --border-color: conic-gradient(from var(--angle) at 50.33% 50.33%, rgba(255, 183, 188, 0.30) 0deg, rgba(97, 0, 255, 0.30) 125.62500357627869deg, rgba(255, 125, 219, 0.28) 258.75deg, rgba(255, 195, 182, 0.30) 360deg);
@@ -79,6 +101,22 @@
   padding-bottom: 1rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+  border-color: #0000;
+  border-width: 4px;
+  border-radius: 1.5rem;
+  width: auto;
+}
+
+.btnChatboxStyle {
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   border-color: #0000;
   border-width: 4px;
   border-radius: 1.5rem;
@@ -123,4 +161,38 @@ footer .footer-find-me a:hover {
   text-decoration:none;
   border-color: rgb(255, 255, 255);
   background-color: #88a5df;
+}
+
+.inputBar{
+  margin-top: 3%;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+  font-weight: 500;
+  font-size: 1.85rem;
+  line-height: 5.75rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-color: rgb(149, 173, 226);
+  border-width: 4px;
+  border-radius: 1.5rem;
+  width: 80%;
+}
+
+.submitBtn{
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-color: #0000;
+  border-width: 4px;
+  border-radius: 1.5rem;
+  background: transparent;
+  border: none;
 }
