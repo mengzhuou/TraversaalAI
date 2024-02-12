@@ -1,3 +1,10 @@
+Frontend Setup
+
+1) Locate to src folder
+2) run "npm install" in terminal
+3) run "npm start" to run frontend in the local 3000 port 
+
+
 Backend Setup
 
 1) Locate to backend folder
