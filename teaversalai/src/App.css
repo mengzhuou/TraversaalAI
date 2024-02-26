@@ -1,7 +1,14 @@
 .App {
   text-align: center;
-
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
 }
+
+.App::-webkit-scrollbar {
+  display: none;
+}
+
 .App-header {
   background-color: transparent;
   min-height: 100vh;
@@ -121,6 +128,7 @@
   border-width: 4px;
   border-radius: 1.5rem;
   width: auto;
+
 }
 
 footer {
@@ -192,6 +200,34 @@ footer .footer-find-me a:hover {
   padding-right: 1rem;
   border-color: #0000;
   border-width: 4px;
+  border-radius: 1.5rem;
+  background: transparent;
+  border: none;
+}
+
+.responseContainer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+  border-color: rgb(91, 151, 255);
+  border-width: 4px;
+}
+
+.inputSection{
+  padding-bottom: 50px;
+}
+.loadingIcon{
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .3s;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  border-color: #0000;
+  border-width: 10px;
   border-radius: 1.5rem;
   background: transparent;
   border: none;
